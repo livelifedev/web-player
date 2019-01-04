@@ -5,19 +5,99 @@
 <body>
     <div id="mainContainer">
         <div id="topContainer">
-            <div id="navBarContainer">
             
+            <div id="navBarContainer">
+                <nav class="navBar">
+
+                    <span class="logo">LOGO</span>
+
+                    <div class="group">
+                        <div class="navItem">
+                            <span class="navItemLink">Search</span>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <div class="navItem">
+                            <span class="navItemLink">Browse</span>
+                            <span class="navItemLink">Your Tunes</span>
+                            <span class="navItemLink">Profile</span>
+                        </div>
+                    </div>
+                </nav>
             </div>
 
             <div id="mainViewContainer">
                 <div id="mainContent">
-                    
+                    <p>main content</p>
                 </div>
             </div>
         </div>
 
         <div id="nowPlayingBarContainer">
-            
+            <div id="nowPlayingBar">
+                
+                <div id="nowPlayingLeft">
+                    <div class="content">
+                        <span class="albumLink">Album Artwork</span>
+                        <div class="trackInfo">
+                            <span class="trackName">trackName Placeholder</span>
+                            <span class="artistName">artistName Placeholder</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="nowPlayingCenter">
+                    <div class="content playerControls">
+
+                        <div class="buttons">
+                            <button class="controlButton shuffle" title="Shuffle button">
+                                shuffle button
+                            </button>
+                            <button class="controlButton previous" title="Previous button">
+                                previous button
+                            </button>
+                            <button class="controlButton play" title="Play button">
+                                play button
+                            </button>
+                            <button class="controlButton pause" title="Pause button">
+                                pause button
+                            </button>
+                            <button class="controlButton next" title="Next button">
+                                next button
+                            </button>
+                            <button class="controlButton repeat" title="Repeat button">
+                                repeat button
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="playbackBar">
+
+                        <span class="progressTime current">0.00</span>
+                        <div class="progressBar">
+                            <div class="progressBarBg">
+                                <div class="progress"></div>
+                            </div>
+                        </div>
+                        <span class="progressTime remaining">0.00</span>
+                        
+                    </div>
+                </div>
+
+                <div id="nowPlayingRight">
+                    
+                    <div class="volumeBar">
+                        <button class="controlButton volume" title="Volume button">volume button</button>
+                        <div class="progressBar">
+                            <div class="progressBarBg">
+                                <div class="progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </body>
