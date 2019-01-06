@@ -100,14 +100,14 @@ PROGRESS BAR
 }
 
 .progressBarBg {
-    background-color: #404040;
+    background-color: #294930;
     height: 4px;
     width: 100%;
     border-radius: 2px;
 }
 
 .progress { /* Update bar using JS */
-    background-color: #a0a0a0;
+    background-color: #00813a;
     height: 4px;
     width: 50%;
     border-radius: 2px;
