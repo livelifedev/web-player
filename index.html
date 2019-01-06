@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Dev Tunes</title>
+    <title>dev Tunes</title>
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
@@ -11,19 +11,29 @@
             <div id="navBarContainer">
                 <nav class="navBar">
 
-                    <span class="logo">LOGO</span>
+                    <span role="link" tabindex="0" onclick="openPage('index.html')" class="logo">
+                        <img src="assets/images/icons/logo.png">
+                        dev Tunes
+                    </span>
 
                     <div class="group">
                         <div class="navItem">
-                            <span class="navItemLink">Search</span>
+                            <span class="navItemLink">
+                                Search
+                                <img src="assets/images/icons/search.png" class="icon" alt="search">
+                            </span>
                         </div>
                     </div>
 
                     <div class="group">
                         <div class="navItem">
-                            <span class="navItemLink">Browse</span>
-                            <span class="navItemLink">Your Tunes</span>
-                            <span class="navItemLink">Profile</span>
+                            <span role="link" tabindex="0" onclick="openPage('')" class="navItemLink">Browse</span>
+                        </div>
+                        <div class="navItem">
+                            <span role="link" tabindex="0" onclick="openPage('')" class="navItemLink">Your Tunes</span>
+                        </div>
+                        <div class="navItem">
+                            <span role="link" tabindex="0" onclick="openPage('')" class="navItemLink">Profile</span>
                         </div>
                     </div>
                 </nav>
@@ -41,10 +51,17 @@
                 
                 <div id="nowPlayingLeft">
                     <div class="content">
-                        <span class="albumLink">Album Artwork</span>
+                        <span class="albumLink">
+                            <img role="link" tabindex="0" src="assets/images/artwork/album1.jpg" class="albumArtwork">
+                        </span>
+
                         <div class="trackInfo">
-                            <span class="trackName">trackName Placeholder</span>
-                            <span class="artistName">artistName Placeholder</span>
+                            <span class="trackName">
+                                <span role="link" tabindex="0">track Placeholder</span>
+                            </span>
+                            <span class="artistName">
+                                <span role="link" tabindex="0">artist Placeholder</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -54,43 +71,44 @@
 
                         <div class="buttons">
                             <button class="controlButton shuffle" title="Shuffle button">
-                                shuffle button
+                                <img src="assets/images/icons/shuffle.png" alt="Shuffle">
                             </button>
                             <button class="controlButton previous" title="Previous button">
-                                previous button
+                                <img src="assets/images/icons/previous.png" alt="Previous">
                             </button>
                             <button class="controlButton play" title="Play button">
-                                play button
+                                <img src="assets/images/icons/play.png" alt="Play">
                             </button>
                             <button class="controlButton pause" title="Pause button">
-                                pause button
+                                <img src="assets/images/icons/pause.png" alt="Pause">
                             </button>
                             <button class="controlButton next" title="Next button">
-                                next button
+                                <img src="assets/images/icons/next.png" alt="Next">
                             </button>
                             <button class="controlButton repeat" title="Repeat button">
-                                repeat button
+                                <img src="assets/images/icons/repeat.png" alt="Repeat">
                             </button>
                         </div>
-                    </div>
 
-                    <div class="playbackBar">
+                        <div class="playbackBar">
 
-                        <span class="progressTime current">0.00</span>
-                        <div class="progressBar">
-                            <div class="progressBarBg">
-                                <div class="progress"></div>
+                            <span class="progressTime current">0.00</span>
+                            <div class="progressBar">
+                                <div class="progressBarBg">
+                                    <div class="progress"></div>
+                                </div>
                             </div>
+                            <span class="progressTime remaining">0.00</span>
                         </div>
-                        <span class="progressTime remaining">0.00</span>
-                        
                     </div>
                 </div>
 
                 <div id="nowPlayingRight">
 
                     <div class="volumeBar">
-                        <button class="controlButton volume" title="Volume button">volume button</button>
+                        <button class="controlButton volume" title="Volume button">
+                            <img src="assets/images/icons/volume.png" alt="Volume">
+                        </button>
                         <div class="progressBar">
                             <div class="progressBarBg">
                                 <div class="progress"></div>

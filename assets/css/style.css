@@ -2,9 +2,12 @@ body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     letter-spacing: 1px;
     font-size: 14px;
-    color: #ffffff;
-    background-color: #181818;
     min-width: 720px;
+}
+
+#topContainer { /**/
+    min-height: 100%;
+    width: 100%;
 }
 
 /*****************************************
@@ -13,7 +16,6 @@ PLAYBAR
 
 #nowPlayingBarContainer {
     width: 100%;
-    background-color: #282828;
     bottom: 0;
     position: fixed;
     min-width: 620px;
@@ -61,7 +63,14 @@ PLAYBAR
 }
 
 .controlButton img {
+    width: 20px;
+    height: 20px;
+}
 
+.controlButton.play img,
+.controlButton.pause img {
+    width: 32px;
+    height: 32px;
 }
 
 .controlButton:hover {
@@ -97,14 +106,14 @@ PROGRESS BAR
     border-radius: 2px;
 }
 
-.progress { /* Update progress using JS */
+.progress { /* Update bar using JS */
     background-color: #a0a0a0;
     height: 4px;
     width: 50%;
     border-radius: 2px;
 }
 
-.playbackBar .progressBar { /**/
+.playbackBar .progressBar { /* Music time progress bar */
     margin-top: 3px;
 }
 
@@ -112,11 +121,19 @@ PROGRESS BAR
 TRACK INFO BAR
 *****************************************/
 
+#nowPlayingLeft .albumArtwork {
+    height: 100%;
+    max-width: 57px;
+    margin-right: 15px;
+    float: left;
+    background-size: cover; /**/
+}
+
 #nowPlayingLeft .trackInfo {
     display: table;
 }
 
-#nowPlayingLeft .trackInfo {
+#nowPlayingLeft .trackInfo .trackName {
     margin: 6px 0;
     display: inline-block;
     width: 100%;
@@ -145,13 +162,7 @@ VOLUME BAR
 NAV BAR
 *****************************************/
 
-#topContainer { /**/
-    min-height: 100%;
-    width: 100%;
-}
-
 #navBarContainer {
-    background-color: #000;
     width: 220px;
     height: 100vh;
     position: fixed;
@@ -167,7 +178,14 @@ NAV BAR
 }
 
 .logo {
-    margin-bottom: 15px;
+    margin-bottom: 9px;
+    font-size: 16px;
+}
+
+.logo img {
+    width: 32px;
+    vertical-align: middle;
+    padding-bottom: 6px;
 }
 
 .navBar .group {
@@ -193,6 +211,13 @@ NAV BAR
     color: #fff;
 }
 
+.navItemLink .icon {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 25px;
+}
+
 /*****************************************
 MAIN CONTENT
 *****************************************/
@@ -206,3 +231,27 @@ MAIN CONTENT
     padding: 0 20px;
 }
 
+/*****************************************
+MISC
+*****************************************/
+
+[role="link"] {
+    cursor: pointer;
+}
+
+/*****************************************
+COLOR SCHEMES
+*****************************************/
+
+body {
+    background-color: #18121e;
+    color: #ffffff;
+}
+
+#navBarContainer {
+    background-color: #49274a;
+}
+
+#nowPlayingBarContainer {
+    background-color: #76323f;
+}
