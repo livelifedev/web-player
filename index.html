@@ -121,15 +121,48 @@
         </div>
     </div>
 
-<audio src="assets/music/test_audio.mp3" id="muse"></audio>
+<audio src="" id="currentSong"></audio>
 <script>
-    let audioElement = document.getElementById("muse");
-    
+    let songDB = ["test_audio.mp3", "test_audio2.mp3", "test_audio3.mp3"];
+    let currentPlaylist = [];
+    let shufflePlaylist = [];
+    let tempPlaylist = [];
+    let currentIndex = 0;
+    let audioElement = document.getElementById("currentSong");
+    let repeat = false;
+    let shuffle = false;
+
+    function getSong() {
+        let songQuery = songDB[Math.floor(Math.random() * songDB.length)];
+        audioElement.src = "assets/music/" + songQuery;
+        let trackName = document.querySelector(".trackName span");
+        trackName.textContent = songQuery;
+    }
+
     function playSong() {
+        getSong();
         audioElement.play();
     }
     function pauseSong() {
         audioElement.pause();
+    }
+    function nextSong() {
+        //setTrack
+    }
+    function prevSong() {
+        //setTrack
+    }
+    function setTrack(trackId, newPlaylist, play) {
+        if(newPlaylist != currentPlaylist) {
+            currentPlaylist = newPlaylist;
+        }
+        currentIndex = currentPlaylist.indexOf(trackId);
+        if(play) {
+            playSong();
+        }
+    }
+    function playFirstSong() {
+        setTrack(tempPlaylist[0], tempPlaylist, true);
     }
 </script>
 
