@@ -132,31 +132,48 @@
     let repeat = false;
     let shuffle = false;
 
-    function getSong() {
-        let songQuery = songDB[Math.floor(Math.random() * songDB.length)];
-        audioElement.src = "assets/music/" + songQuery;
-        let trackName = document.querySelector(".trackName span");
-        trackName.textContent = songQuery;
-    }
+    // function getSong(database) { //gets song from database, updates html audio src and track name
+    //     //songDB[Math.floor(Math.random() * songDB.length)];
+    //     let track = database[0];
+    //     audioElement.src = "assets/music/" + track;
+    //     let trackName = document.querySelector(".trackName span");
+    //     trackName.textContent = track;
+    // }
 
     function playSong() {
-        getSong();
         audioElement.play();
+        console.log(currentIndex);
     }
     function pauseSong() {
         audioElement.pause();
     }
     function nextSong() {
-        //setTrack
+        if(currentIndex == currentPlaylist.length - 1) {
+            currentIndex = 0;
+        } else {
+            currentIndex++;
+        }
+        let trackToPlay = currentPlaylist[currentIndex];
+        setTrack(trackToPlay, currentPlaylist, true);
+        console.log(currentPlaylist);
     }
     function prevSong() {
-        //setTrack
+        if(audioElement.currentTime >= 3 || currentIndex == 0) {
+            audioElement.currentTime = 0;
+        } else {
+            currentIndex--;
+            setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
+        }
     }
     function setTrack(trackId, newPlaylist, play) {
         if(newPlaylist != currentPlaylist) {
             currentPlaylist = newPlaylist;
         }
         currentIndex = currentPlaylist.indexOf(trackId);
+        let track = currentPlaylist[currentIndex];
+        audioElement.src = "assets/music/" + track;
+        let trackName = document.querySelector(".trackName span");
+        trackName.textContent = track;
         if(play) {
             playSong();
         }
@@ -165,7 +182,12 @@
         setTrack(tempPlaylist[0], tempPlaylist, true);
     }
 </script>
-
+<script>
+    let newPlaylist = songDB; //should generate random playlist 10 songs
+    setTrack(newPlaylist[0], newPlaylist, false);
+    
+    console.log("pageLoad",currentPlaylist);
+</script>
 
 </body>
 </html>
