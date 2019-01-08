@@ -27,10 +27,10 @@
 
                     <div class="group">
                         <div class="navItem">
-                            <span role="link" tabindex="0" onclick="openPage('')" class="navItemLink">Browse</span>
+                            <span role="link" tabindex="0" onclick="openPage('browse.html')" class="navItemLink">Browse</span>
                         </div>
                         <div class="navItem">
-                            <span role="link" tabindex="0" onclick="openPage('')" class="navItemLink">Your Tunes</span>
+                            <span role="link" tabindex="0" onclick="openPage('tunes.html')" class="navItemLink">Your Tunes</span>
                         </div>
                         <div class="navItem">
                             <span role="link" tabindex="0" onclick="openPage('')" class="navItemLink">Profile</span>
@@ -40,9 +40,7 @@
             </div>
 
             <div id="mainViewContainer">
-                <div id="mainContent">
-                    <h1>main content</h1>
-                </div>
+                <div id="mainContent"></div>
             </div>
         </div>
 
@@ -142,7 +140,6 @@
 
     function playSong() {
         audioElement.play();
-        console.log(currentIndex);
     }
     function pauseSong() {
         audioElement.pause();
@@ -155,7 +152,6 @@
         }
         let trackToPlay = currentPlaylist[currentIndex];
         setTrack(trackToPlay, currentPlaylist, true);
-        console.log(currentPlaylist);
     }
     function prevSong() {
         if(audioElement.currentTime >= 3 || currentIndex == 0) {
@@ -178,15 +174,27 @@
             playSong();
         }
     }
-    function playFirstSong() {
-        setTrack(tempPlaylist[0], tempPlaylist, true);
+    // function playFirstSong() {
+    //     setTrack(tempPlaylist[0], tempPlaylist, true);
+    // }
+
+    function openPage(url) {
+        req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                let content = document.getElementById("mainContent");
+                content.innerHTML = req.responseText;
+            }
+        }
+        req.open("GET", url, true);
+        req.send(null);
+        
     }
 </script>
 <script>
     let newPlaylist = songDB; //should generate random playlist 10 songs
     setTrack(newPlaylist[0], newPlaylist, false);
     
-    console.log("pageLoad",currentPlaylist);
 </script>
 
 </body>
