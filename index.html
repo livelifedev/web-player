@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>dev Tunes</title>
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <div id="mainContainer">
@@ -33,7 +35,7 @@
                             <span role="link" tabindex="0" onclick="openPage('tunes.html')" class="navItemLink">Your Tunes</span>
                         </div>
                         <div class="navItem">
-                            <span role="link" tabindex="0" onclick="openPage('')" class="navItemLink">Profile</span>
+                            <a href="browse.html" class="navItemLink">Profile</a>
                         </div>
                     </div>
                 </nav>
@@ -179,15 +181,23 @@
     // }
 
     function openPage(url) {
-        req = new XMLHttpRequest();
-        req.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                let content = document.getElementById("mainContent");
-                content.innerHTML = req.responseText;
-            }
-        }
-        req.open("GET", url, true);
-        req.send(null);
+            //vanilla javascript/ajax method
+        // req = new XMLHttpRequest();
+        // req.onreadystatechange = function() {
+        //     if(this.readyState == 4 && this.status == 200) {
+        //         let content = document.getElementById("mainContent");
+        //         content.innerHTML = req.responseText;
+        //     }
+        // }
+        // req.open("GET", url, true);
+        // req.send(null);
+
+            //html method
+        let content = document.getElementById("mainContent");
+        content.innerHTML = "<object data='" + url + "'></object>";
+
+            //jQuery method
+        // $("#mainContent").load(url);
         
     }
 </script>
