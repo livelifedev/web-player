@@ -13,7 +13,7 @@
             <div id="navBarContainer">
                 <nav class="navBar">
 
-                    <span role="link" tabindex="0" onclick="openPage('index.html')" class="logo">
+                    <span role="link" tabindex="0" onclick="openPage('browse.html')" class="logo">
                         <img src="assets/images/icons/logo.png">
                         dev Tunes
                     </span>
@@ -70,7 +70,7 @@
                     <div class="content playerControls">
 
                         <div class="buttons">
-                            <button class="controlButton shuffle" title="Shuffle button" onclick="setSong()"> 
+                            <button class="controlButton shuffle" title="Shuffle button" onclick="setShuffle()"> 
                                 <img src="assets/images/icons/shuffle.png" alt="Shuffle">
                             </button>
                             <button class="controlButton previous" title="Previous button" onclick="prevSong()">
@@ -128,6 +128,7 @@
     let shufflePlaylist = [];
     let tempPlaylist = [];
     let currentIndex = 0;
+    let track = "";
     let audioElement = document.getElementById("currentSong");
     let repeat = false;
     let shuffle = false;
@@ -147,12 +148,17 @@
         audioElement.pause();
     }
     function nextSong() {
+        if(repeat == true) {
+            audioElement.currentTime = 0;
+            playSong();
+            return;
+        }
         if(currentIndex == currentPlaylist.length - 1) {
             currentIndex = 0;
         } else {
             currentIndex++;
         }
-        let trackToPlay = currentPlaylist[currentIndex];
+        let trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
         setTrack(trackToPlay, currentPlaylist, true);
     }
     function prevSong() {
@@ -160,22 +166,60 @@
             audioElement.currentTime = 0;
         } else {
             currentIndex--;
-            setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
+            let trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
+            setTrack(trackToPlay, currentPlaylist, true);
         }
     }
     function setTrack(trackId, newPlaylist, play) {
         if(newPlaylist != currentPlaylist) {
             currentPlaylist = newPlaylist;
+            shufflePlaylist = currentPlaylist.slice();
+            shuffleArray(shufflePlaylist);
         }
-        currentIndex = currentPlaylist.indexOf(trackId);
-        let track = currentPlaylist[currentIndex];
-        audioElement.src = "assets/music/" + track;
+        if (shuffle == true) {
+            currentIndex = shufflePlaylist.indexOf(trackId);
+            track = shufflePlaylist[currentIndex];//
+        } else {
+            currentIndex = currentPlaylist.indexOf(trackId);
+            track = currentPlaylist[currentIndex];//
+        }
+        pauseSong();
+        audioElement.src = "assets/music/" + track;//
         let trackName = document.querySelector(".trackName span");
         trackName.textContent = track;
         if(play) {
             playSong();
         }
     }
+    function setShuffle() {
+        shuffle = !shuffle;
+        let shuffleButton = document.querySelector(".controlButton.shuffle img");
+        let shuffleIcon = shuffle ? "shuffle-active.png" : "shuffle.png";
+        shuffleButton.setAttribute("src", "assets/images/icons/" + shuffleIcon);
+
+        if(shuffle == true) {
+            shuffleArray(shufflePlaylist);
+            currentIndex = shufflePlaylist.indexOf(track);
+        } else {
+            currentIndex = currentPlaylist.indexOf(track);
+        }
+    }
+    function shuffleArray(a) {
+        let y, x, z; //y = random pick, x = tmp storage, i = playlist index
+        for (z = a.length; z; z--) {
+            y = Math.floor(Math.random() * z);
+            x = a[z - 1];
+            a[z - 1] = a[y];
+            a[y] = x;
+        }
+    }
+    function setRepeat() {
+        repeat = !repeat;
+        let repeatButton = document.querySelector(".controlButton.repeat img");
+        let repeatIcon = repeat ? "repeat-active.png" : "repeat.png";
+        repeatButton.setAttribute("src", "assets/images/icons/" + repeatIcon);
+    }
+
     // function playFirstSong() {
     //     setTrack(tempPlaylist[0], tempPlaylist, true);
     // }
