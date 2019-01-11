@@ -109,7 +109,7 @@ PROGRESS BAR
 .progress { /* Update bar using JS */
     background-color: #00813a;
     height: 4px;
-    width: 50%;
+    width: 0;
     border-radius: 2px;
 }
 
