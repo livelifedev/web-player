@@ -92,13 +92,13 @@
 
                         <div class="playbackBar">
 
-                            <span class="progressTime current">0.00</span>
+                            <span class="progressTime current">0:00</span>
                             <div class="progressBar">
                                 <div class="progressBarBg">
                                     <div class="progress"></div>
                                 </div>
                             </div>
-                            <span class="progressTime remaining">0.00</span>
+                            <span class="progressTime remaining">0:00</span>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,6 @@
 
     function playSong() {
         audioElement.play();
-        console.log(audioElement.volume);
     }
     function pauseSong() {
         audioElement.pause();
@@ -242,14 +241,24 @@
     function updateTimeProgressBar(audio) {
         const currTime = document.querySelector(".progressTime.current");
         const remTime = document.querySelector(".progressTime.remaining");
+        currTime.textContent = formatTime(audio.currentTime);
+        remTime.textContent = formatTime(audio.duration - audio.currentTime);
 
         const progress = audio.currentTime / audio.duration * 100;
         const progressBar = document.querySelector(".playbackBar .progress");
         progressBar.style.width = progress + "%";
     }
 
+    function formatTime(secs) {
+        const time = Math.round(secs);
+        const minutes = Math.floor(time / 60);
+        const seconds = time - minutes * 60;
+        let extraZero = (seconds < 10) ? "0" : "";
+        return minutes + ":" + extraZero + seconds;
+    }
+
     function timeFromOffset(mouse, progressBar) {
-        const percentage = mouse.offsetX / parseInt(getComputedStyle(progressBar).width); * 100; //optimize later
+        const percentage = mouse.offsetX / parseInt(getComputedStyle(progressBar).width) * 100; //optimize later
         const seconds = audioElement.duration * (percentage / 100);
         audioElement.currentTime = seconds;
     }
@@ -277,10 +286,13 @@
 </script>
 <script>
     let newPlaylist = songDB; //should generate random playlist 10 songs
-    audioElement.addEventListener("volumechange", () => {
-        updateVolumeProgressBar(audioElement);
-    }); //This attached to audio source, need to create audio class to put this in
     setTrack(newPlaylist[0], newPlaylist, false);
+    audioElement.onloadedmetadata = () => updateTimeProgressBar(audioElement);
+    audioElement.addEventListener("timeupdate", function() {
+        if(this.duration) updateTimeProgressBar(this);
+    });
+    audioElement.addEventListener("ended", () => nextSong());
+    audioElement.addEventListener("volumechange", () => updateVolumeProgressBar(audioElement)); //This attached to audio source, need to create audio class to put this in
     updateVolumeProgressBar(audioElement);
 
     
@@ -302,9 +314,10 @@
     timeBar.addEventListener("mousedown", () => mouseDown = true);
     timeBar.addEventListener("mousemove", (e) => {
         if(mouseDown) {
-            //timeFromOffset
+            timeFromOffset(e, timeBar);
         }
-    })
+    });
+    timeBar.addEventListener("mouseup", (e) => timeFromOffset(e, timeBar));
 
 
     document.addEventListener("mouseup", () => mouseDown = false);
