@@ -4,6 +4,7 @@
     <title>dev Tunes</title>
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <div id="mainContainer">
@@ -140,11 +141,19 @@
     //     let trackName = document.querySelector(".trackName span");
     //     trackName.textContent = track;
     // }
-
+    
     function playSong() {
+        const playBtn = document.querySelector(".controlButton.play");
+        const pauseBtn = document.querySelector(".controlButton.pause");
+        playBtn.style.display = "none";
+        pauseBtn.style.display = "inline-block";
         audioElement.play();
     }
     function pauseSong() {
+        const playBtn = document.querySelector(".controlButton.play");
+        const pauseBtn = document.querySelector(".controlButton.pause");
+        playBtn.style.display = "inline-block";
+        pauseBtn.style.display = "none";
         audioElement.pause();
     }
     function nextSong() {
@@ -187,6 +196,10 @@
         audioElement.src = "assets/music/" + track;//
         let trackName = document.querySelector(".trackName span");
         trackName.textContent = track;
+        let artistName = document.querySelector(".trackInfo .artistName span");
+        artistName.textContent = track;
+        //let albumName = document.querySelector(".trackInfo .artistName span");
+        //trackName.textContent = track;
         if(play) {
             playSong();
         }

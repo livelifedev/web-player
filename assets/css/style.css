@@ -73,10 +73,6 @@ PLAYBAR
     height: 32px;
 }
 
-.controlButton:hover {
-    cursor: pointer;
-}
-
 /*****************************************
 PROGRESS BAR
 *****************************************/
@@ -236,6 +232,10 @@ MISC
 *****************************************/
 
 [role="link"] {
+    cursor: pointer;
+}
+
+button {
     cursor: pointer;
 }
 
