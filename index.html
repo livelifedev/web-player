@@ -4,7 +4,6 @@
     <title>dev Tunes</title>
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <div id="mainContainer">
@@ -263,6 +262,10 @@
         audioElement.currentTime = seconds;
     }
 
+    function addListenerMulti(el, s, fn) {
+        s.split(" ").forEach(e => el.addEventListener(e, fn, false));
+    }
+
     function openPage(url) {
             //vanilla javascript/ajax method
         // req = new XMLHttpRequest();
@@ -287,29 +290,40 @@
 <script>
     let newPlaylist = songDB; //should generate random playlist 10 songs
     setTrack(newPlaylist[0], newPlaylist, false);
-    audioElement.onloadedmetadata = () => updateTimeProgressBar(audioElement);
+    audioElement.addEventListener("canplay", function() {
+        const duration = formatTime(this.duration);
+        document.querySelector(".progressTime.remaining").textContent = duration;
+    });
+
+    let container = document.getElementById("nowPlayingBarContainer");
+    addListenerMulti(container, "mousedown touchstart mousemove touchmove", (e) => e.preventDefault());
+
     audioElement.addEventListener("timeupdate", function() {
         if(this.duration) updateTimeProgressBar(this);
     });
     audioElement.addEventListener("ended", () => nextSong());
-    audioElement.addEventListener("volumechange", () => updateVolumeProgressBar(audioElement)); //This attached to audio source, need to create audio class to put this in
+    audioElement.addEventListener("volumechange", () => updateVolumeProgressBar(audioElement));
     updateVolumeProgressBar(audioElement);
-
-    
 
     const volBar = document.querySelector(".volumeBar .progressBar");
     const volWidth = parseInt(getComputedStyle(volBar).width);
+
     volBar.addEventListener("mousedown", () => mouseDown = true); //combine later with other mousedowns
     volBar.addEventListener("mousemove", (e) => {
         if(mouseDown) {
             const percentage = e.offsetX / volWidth;
-
             if(percentage >= 0 && percentage <= 1) {
                 audioElement.volume = percentage;
             }
         }
     })
-    
+    volBar.addEventListener("mouseup", (e) => {
+        const percentage = e.offsetX / volWidth;
+        if(percentage >= 0 && percentage <= 1) {
+            audioElement.volume = percentage;
+        }
+    });
+
     const timeBar = document.querySelector(".playbackBar .progressBar");
     timeBar.addEventListener("mousedown", () => mouseDown = true);
     timeBar.addEventListener("mousemove", (e) => {
