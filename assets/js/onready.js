@@ -1,20 +1,10 @@
-
     let newPlaylist = songDB; //should generate random playlist 10 songs
+    audioElement = new Audio();
     setTrack(newPlaylist[0], newPlaylist, false);
-    audioElement.addEventListener("canplay", function() {
-        const duration = formatTime(this.duration);
-        document.querySelector(".progressTime.remaining").textContent = duration;
-    });
+    updateVolumeProgressBar(audioElement.audio);
 
     let container = document.getElementById("nowPlayingBarContainer");
     addListenerMulti(container, "mousedown touchstart mousemove touchmove", (e) => e.preventDefault());
-
-    audioElement.addEventListener("timeupdate", function() {
-        if(this.duration) updateTimeProgressBar(this);
-    });
-    audioElement.addEventListener("ended", () => nextSong());
-    audioElement.addEventListener("volumechange", () => updateVolumeProgressBar(audioElement));
-    updateVolumeProgressBar(audioElement);
 
     const volBar = document.querySelector(".volumeBar .progressBar");
     const volWidth = parseInt(getComputedStyle(volBar).width);
@@ -24,14 +14,14 @@
         if(mouseDown) {
             const percentage = e.offsetX / volWidth;
             if(percentage >= 0 && percentage <= 1) {
-                audioElement.volume = percentage;
+                audioElement.audio.volume = percentage;
             }
         }
     })
     volBar.addEventListener("mouseup", (e) => {
         const percentage = e.offsetX / volWidth;
         if(percentage >= 0 && percentage <= 1) {
-            audioElement.volume = percentage;
+            audioElement.audio.volume = percentage;
         }
     });
 
@@ -44,5 +34,7 @@
     });
     timeBar.addEventListener("mouseup", (e) => timeFromOffset(e, timeBar));
 
-
     document.addEventListener("mouseup", () => mouseDown = false);
+
+
+    

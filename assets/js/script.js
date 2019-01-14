@@ -2,8 +2,7 @@
     let shufflePlaylist = [];
     let tempPlaylist = [];
     let currentIndex = 0;
-    let track = "";
-    let audioElement = document.getElementById("currentSong");
+    let audioElement;
     let repeat = false;
     let shuffle = false;
     let mouseDown = false;
@@ -24,7 +23,7 @@
     }
     function nextSong() {
         if(repeat == true) {
-            audioElement.currentTime = 0;
+            audioElement.setTime(0);
             playSong();
             return;
         }
@@ -37,8 +36,8 @@
         setTrack(trackToPlay, currentPlaylist, true);
     }
     function prevSong() {
-        if(audioElement.currentTime >= 3 || currentIndex == 0) {
-            audioElement.currentTime = 0;
+        if(audioElement.audio.currentTime >= 3 || currentIndex == 0) {
+            audioElement.setTime(0);
         } else {
             currentIndex--;
             let trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
@@ -53,22 +52,21 @@
         }
         if (shuffle == true) {
             currentIndex = shufflePlaylist.indexOf(trackId);
-            track = shufflePlaylist[currentIndex];
         } else {
             currentIndex = currentPlaylist.indexOf(trackId);
-            track = currentPlaylist[currentIndex];
         }
         pauseSong();
 
-        audioElement.src = "assets/music/" + track.src;
         let trackName = document.querySelector(".trackName span");
-        trackName.textContent = track.title;
+        trackName.textContent = trackId.title;
         let artistName = document.querySelector(".trackInfo .artistName span");
-        artistName.textContent = track.artist;
+        artistName.textContent = trackId.artist;
         //let albumName = document.querySelector(".trackInfo .artistName span");
         //trackName.textContent = track;
+        audioElement.setTrack(trackId);
         if(play) {
             playSong();
+            //setTimeout(() => playSong(), 80);
         }
     }
     function setShuffle() {
@@ -79,9 +77,9 @@
 
         if(shuffle == true) {
             shuffleArray(shufflePlaylist);
-            currentIndex = shufflePlaylist.indexOf(track);
+            currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying);
         } else {
-            currentIndex = currentPlaylist.indexOf(track);
+            currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying);
         }
     }
     function shuffleArray(a) {
@@ -101,9 +99,9 @@
     }
 
     function setMute() {
-        audioElement.muted = !audioElement.muted;
+        audioElement.audio.muted = !audioElement.audio.muted;
         let volButton = document.querySelector(".controlButton.volume img");
-        let volIcon = audioElement.muted ? "volume-mute.png" : "volume.png";
+        let volIcon = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
         volButton.setAttribute("src", "assets/images/icons/" + volIcon);
     }
 
@@ -138,8 +136,8 @@
 
     function timeFromOffset(mouse, progressBar) {
         const percentage = mouse.offsetX / parseInt(getComputedStyle(progressBar).width) * 100; //optimize later
-        const seconds = audioElement.duration * (percentage / 100);
-        audioElement.currentTime = seconds;
+        const seconds = audioElement.audio.duration * (percentage / 100);
+        audioElement.setTime(seconds);
     }
 
     function addListenerMulti(el, s, fn) {
@@ -164,3 +162,40 @@
         
     }
 
+
+    class Audio {
+        constructor() {
+            this.currentlyPlaying;
+            this.audio = document.createElement("audio");
+        
+            this.audio.addEventListener("ended", () => nextSong());
+
+            this.audio.addEventListener("canplay", function() {
+                const duration = formatTime(this.duration);
+                document.querySelector(".progressTime.remaining").textContent = duration;
+            });
+
+            this.audio.addEventListener("timeupdate", function() {
+                if(this.duration) updateTimeProgressBar(this);
+            });
+        
+            this.audio.addEventListener("volumechange", function() {
+                updateVolumeProgressBar(this);
+            });
+        }
+
+        setTrack(track) {
+            this.currentlyPlaying = track;
+            this.audio.src = "assets/music/" + track.src;
+        }
+        play() {
+            this.audio.play();
+        }
+        pause() {
+            this.audio.pause();
+        }
+        setTime(seconds) {
+            this.audio.currentTime = seconds;
+        }
+
+    }
