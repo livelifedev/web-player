@@ -1,5 +1,3 @@
-
-    let songDB = ["test_audio.mp3", "test_audio2.mp3", "test_audio3.mp3"];
     let currentPlaylist = [];
     let shufflePlaylist = [];
     let tempPlaylist = [];
@@ -10,14 +8,6 @@
     let shuffle = false;
     let mouseDown = false;
 
-    // function getSong(database) { //gets song from database, updates html audio src and track name
-    //     //songDB[Math.floor(Math.random() * songDB.length)];
-    //     let track = database[0];
-    //     audioElement.src = "assets/music/" + track;
-    //     let trackName = document.querySelector(".trackName span");
-    //     trackName.textContent = track;
-    // }
-    
     function playSong() {
         const playBtn = document.querySelector(".controlButton.play");
         const pauseBtn = document.querySelector(".controlButton.pause");
@@ -55,25 +45,26 @@
             setTrack(trackToPlay, currentPlaylist, true);
         }
     }
-    function setTrack(trackId, newPlaylist, play) {
+    function setTrack(trackId, newPlaylist, play) { 
         if(newPlaylist != currentPlaylist) {
-            currentPlaylist = newPlaylist;
+            currentPlaylist = newPlaylist;      
             shufflePlaylist = currentPlaylist.slice();
             shuffleArray(shufflePlaylist);
         }
         if (shuffle == true) {
             currentIndex = shufflePlaylist.indexOf(trackId);
-            track = shufflePlaylist[currentIndex];//
+            track = shufflePlaylist[currentIndex];
         } else {
             currentIndex = currentPlaylist.indexOf(trackId);
-            track = currentPlaylist[currentIndex];//
+            track = currentPlaylist[currentIndex];
         }
         pauseSong();
-        audioElement.src = "assets/music/" + track;//
+
+        audioElement.src = "assets/music/" + track.src;
         let trackName = document.querySelector(".trackName span");
-        trackName.textContent = track;
+        trackName.textContent = track.title;
         let artistName = document.querySelector(".trackInfo .artistName span");
-        artistName.textContent = track;
+        artistName.textContent = track.artist;
         //let albumName = document.querySelector(".trackInfo .artistName span");
         //trackName.textContent = track;
         if(play) {
@@ -170,9 +161,6 @@
             //html method
         let content = document.getElementById("mainContent");
         content.innerHTML = "<object data='" + url + "'></object>";
-
-            //jQuery method
-        // $("#mainContent").load(url);
         
     }
 
