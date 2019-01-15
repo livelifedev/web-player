@@ -8,7 +8,6 @@
 
     const volBar = document.querySelector(".volumeBar .progressBar");
     const volWidth = parseInt(getComputedStyle(volBar).width);
-
     volBar.addEventListener("mousedown", () => mouseDown = true); //combine later with other mousedowns
     volBar.addEventListener("mousemove", (e) => {
         if(mouseDown) {

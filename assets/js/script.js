@@ -61,8 +61,8 @@
         trackName.textContent = trackId.title;
         let artistName = document.querySelector(".trackInfo .artistName span");
         artistName.textContent = trackId.artist;
-        //let albumName = document.querySelector(".trackInfo .artistName span");
-        //trackName.textContent = track;
+        let albumArt = document.querySelector(".content .albumLink img");
+        albumArt.src = "assets/images/artwork/" + trackId.artwork;
         audioElement.setTrack(trackId);
         if(play) {
             playSong();
