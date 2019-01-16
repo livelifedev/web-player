@@ -23,5 +23,50 @@
     </span>
 
 </div>
+<script src="assets/js/songDB.js"></script>
+<script>
+let albums = {}; //Maybe use the Map data structure instead, so it can be iterated
+let albumsList = [];
 
+for (let y of songDB) {
+    if (albums[y.album] == null) {
+        //still need to add char filter for name
+        albums[y.album] = [y];
+        albumsList.push(y.album);
+    } else {
+        albums[y.album].push(y);
+    }
+};
+console.log(albums); //{Road block:	[{title: "Sunny Sky", …}]
+shuffleArray(albumsList);
+toGrid(albumsList);
+
+
+
+function shuffleArray(a) {
+    let y, x, z; //y = random pick, x = tmp storage, i = playlist index
+    for (z = a.length; z; z--) {
+        y = Math.floor(Math.random() * z);
+        x = a[z - 1];
+        a[z - 1] = a[y];
+        a[y] = x;
+    }
+}
+
+function toGrid(albumsList) {
+    let grid = document.querySelector(".gridViewInfo");
+    for(let i = 0; i < 10; i++) {
+        let title = albumsList[i]; //"Road block"
+        let gridItem = 
+        `<div class="gridViewItem">
+            <span role="link" tabindex="0" onclick="">
+                <img src="assets/images/artwork/${albums[title][0].artwork}">
+                <div class="gridViewInfo">${title}</div>
+            </span>
+        </div>`;
+        console.log("log", grid);
+        grid.appendChild(gridItem);
+    }
+}
+</script>
 </body>
