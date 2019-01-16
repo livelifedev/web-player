@@ -55,18 +55,18 @@ function shuffleArray(a) {
 
 function toGrid(albumsList) {
     let grid = document.querySelector(".gridViewInfo");
-    for(let i = 0; i < 10; i++) {
+    let gridItem = "";
+    for(let i = 0; i < albumsList.length; i++) {
         let title = albumsList[i]; //"Road block"
-        let gridItem = 
+        gridItem += 
         `<div class="gridViewItem">
             <span role="link" tabindex="0" onclick="">
                 <img src="assets/images/artwork/${albums[title][0].artwork}">
                 <div class="gridViewInfo">${title}</div>
             </span>
         </div>`;
-        console.log("log", grid);
-        grid.appendChild(gridItem);
     }
+    grid.innerHTML = gridItem;
 }
 </script>
 </body>
