@@ -9,52 +9,21 @@
 <h1 class="pageHeading">Some Recommendations For You</h1>
 
 <div class="gridViewContainer">
-    <span role="link" tabindex="0" onclick="openPage('')">
-        <img src="">
-        <div class="gridViewInfo">
-            <div class="gridViewItem">
-                <span role="link" tabindex="0" onclick="">
-                    <img src="assets/images/artwork/album1.jpg">
-                    <div class="gridViewInfo">Album 1</div>
-                </span>
-            </div>
-            <!--you want to generate 10 grid divs containing the album-->
-        </div>
-    </span>
+    <div class="gridViewItem">
+        <span role="link" tabindex="0" onclick="">
+            <img src="assets/images/artwork/album1.jpg">
+            <div class="gridViewInfo">Album 1</div>
+        </span>
+    </div>
 
 </div>
 <script src="assets/js/songDB.js"></script>
 <script>
-let albums = {}; //Maybe use the Map data structure instead, so it can be iterated
-let albumsList = [];
-
-for (let y of songDB) {
-    if (albums[y.album] == null) {
-        //still need to add char filter for name
-        albums[y.album] = [y];
-        albumsList.push(y.album);
-    } else {
-        albums[y.album].push(y);
-    }
-};
-console.log(albums); //{Road block:	[{title: "Sunny Sky", …}]
 shuffleArray(albumsList);
 toGrid(albumsList);
 
-
-
-function shuffleArray(a) {
-    let y, x, z; //y = random pick, x = tmp storage, i = playlist index
-    for (z = a.length; z; z--) {
-        y = Math.floor(Math.random() * z);
-        x = a[z - 1];
-        a[z - 1] = a[y];
-        a[y] = x;
-    }
-}
-
 function toGrid(albumsList) {
-    let grid = document.querySelector(".gridViewInfo");
+    let grid = document.querySelector(".gridViewContainer");
     let gridItem = "";
     for(let i = 0; i < albumsList.length; i++) {
         let title = albumsList[i]; //"Road block"

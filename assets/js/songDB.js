@@ -6,3 +6,28 @@ let songDB = [
     {title: "Reckon Fate", artist: "Jumping Jonas", album: "Junkus", artwork: "album9.jpg", src: "test_audio3.mp3"}, 
     {title: "Sandman Haunting", artist: "Purple Vitalia", album: "Opus", artwork: "album12.jpg", src: "test_audio3.mp3"} 
 ];
+
+let albums = {}; //Maybe use the Map data structure instead, so it can be iterated
+let albumsList = [];
+
+for (let y of songDB) {
+    if (albums[y.album] == null) {
+        //still need to add char filter for name
+        albums[y.album] = [y];
+        albumsList.push(y.album);
+    } else {
+        albums[y.album].push(y);
+    }
+};
+console.log(albums); //{Road block:	[{title: "Sunny Sky", …}]
+
+
+function shuffleArray(a) {
+    let y, x, z; //y = random pick, x = tmp storage, i = playlist index
+    for (z = a.length; z; z--) {
+        y = Math.floor(Math.random() * z);
+        x = a[z - 1];
+        a[z - 1] = a[y];
+        a[y] = x;
+    }
+}
