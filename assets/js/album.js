@@ -1,10 +1,11 @@
 //requires access to songDB.js
 console.log("loaded album.js");
+let albumInfo = [];
 function buildAlbumPage(x) {
 
     let placeholder = document.getElementById("mainContent");
-
-    let albumInfo = albums[x];
+    
+    albumInfo = albums[x];
     let albumHeader = 
         `<div class="entityInfo">
             <div class="leftSection">
@@ -20,12 +21,12 @@ function buildAlbumPage(x) {
     let tracklistHTML = '<div class="tracklistContainer"><ul class="tracklist">';
 
     for (let song of albumInfo) {
-
+        let index = albumInfo.indexOf(song);
         tracklistHTML += 
             `<li class="tracklistRow">
                 <div class="trackCount">
-                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack()">
-                    <span class="trackNumber">${albumInfo.indexOf(song) + 1}</span>
+                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(albumInfo[${index}], albumInfo, true)">
+                    <span class="trackNumber">${index + 1}</span>
                 </div>
                 <div class="trackInfo">
                     <span class="trackName">${song.title}</span>
@@ -45,3 +46,5 @@ function buildAlbumPage(x) {
     placeholder.innerHTML = albumHeader + tracklistHTML;
 
 }
+
+
