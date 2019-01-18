@@ -221,15 +221,11 @@ MAIN CONTENT
 #mainViewContainer {
     margin-left: 220px;
     padding-bottom: 90px;
+    width: calc(100% - 220px);
 }
 
 #mainContent {
     padding: 0 20px;
-}
-
-#mainContent object{
-    width: 100%;
-    height: 100vh;
 }
 
 .pageHeading {

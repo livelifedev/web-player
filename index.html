@@ -4,7 +4,6 @@
     <title>dev Tunes</title>
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <div id="mainContainer">
@@ -13,7 +12,7 @@
             <div id="navBarContainer">
                 <nav class="navBar">
 
-                    <span role="link" tabindex="0" onclick="openPage('browse.html')" class="logo">
+                    <span role="link" tabindex="0" onclick="toGrid(albumsList)" class="logo">
                         <img src="assets/images/icons/logo.png">
                         dev Tunes
                     </span>
@@ -29,13 +28,13 @@
 
                     <div class="group">
                         <div class="navItem">
-                            <span role="link" tabindex="0" onclick="openPage('browse.html')" class="navItemLink">Browse</span>
+                            <span role="link" tabindex="0" onclick="toGrid(albumsList)" class="navItemLink">Browse</span>
                         </div>
                         <div class="navItem">
                             <span role="link" tabindex="0" onclick="openPage('tunes.html')" class="navItemLink">Your Tunes</span>
                         </div>
                         <div class="navItem">
-                            <a href="browse.html" class="navItemLink">Profile</a>
+                            <a href="" class="navItemLink">Profile</a>
                         </div>
                     </div>
                 </nav>
@@ -122,8 +121,11 @@
     </div>
 
 <audio src="" id="currentSong"></audio>
+
 <script src="assets/js/songDB.js"></script>
 <script src="assets/js/script.js"></script>
 <script src="assets/js/onready.js"></script>
+<script src="assets/js/browse.js"></script>
+<script src="assets/js/album.js"></script>
 </body>
 </html>
