@@ -34,7 +34,7 @@ function buildAlbumPage(x) {
                 </div>
                 <div class="trackOptions">
                     <input type="hidden" class="songId" value="">
-                    <img class="optionsButton" src="assets/images/icons/more.png" onclick="">
+                    <img class="optionsButton" src="assets/images/icons/more.png" onclick="showOptionsMenu(this)">
                 </div>
                 <div class="trackDuration">
                     <span class="duration">${song.duration}</span>
