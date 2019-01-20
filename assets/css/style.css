@@ -403,6 +403,8 @@ MISC
 
 .optionsMenu select {
     border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 [role="link"] {

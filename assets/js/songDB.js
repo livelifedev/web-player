@@ -11,6 +11,12 @@ let songDB = [
 let albums = {}; //Maybe use the Map data structure instead, so it can be iterated
 let albumsList = [];
 
+let userPlaylists = [
+    {name: "Playlist 1", songs: []},
+    {name: "Playlist 2", songs: []},
+    {name: "Playlist 3", songs: []}
+];
+
 for (let y of songDB) {
     if (albums[y.album] == null) {
         //still need to add char filter for name

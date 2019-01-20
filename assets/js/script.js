@@ -8,12 +8,6 @@ let repeat = false;
 let shuffle = false;
 let mouseDown = false;
 
-document.addEventListener("click", (e) => {
-    let target = e.target.classList;
-    if(!target.contains("item") && !target.contains("optionsButton")) {
-        hideOptionsMenu();
-    };
-});
 window.addEventListener("scroll", () => hideOptionsMenu());
 
 function playSong() {
@@ -165,25 +159,7 @@ function addListenerMulti(el, s, fn) {
 //     req.send(null);
 // }
 
-function showOptionsMenu(button) {
-    let songId;
-    let menu = document.querySelector(".optionsMenu");
-    let menuWidth = parseInt(getComputedStyle(menu).width); //optimize later
-    //menu.querySelector(".songId") = songId;
-    const scrollTop = window.scrollY;
-    const elementOffset = button.offsetTop;
-    const top = elementOffset - scrollTop;
-    const left = button.offsetLeft;
 
-    menu.style.cssText = `top: ${top}px; left: ${left - menuWidth}px; display: inline`;
-}
-
-function hideOptionsMenu() {
-    let menu = document.querySelector(".optionsMenu");
-    if(menu.style.display != "none") {
-        menu.style.display = "none";
-    }
-}
 
 class Audio {
     constructor() {

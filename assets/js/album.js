@@ -33,7 +33,7 @@ function buildAlbumPage(x) {
                     <span class="artistName">${song.artist}</span>
                 </div>
                 <div class="trackOptions">
-                    <input type="hidden" class="songId" value="">
+                    <input type="hidden" class="songId" value="${index}">
                     <img class="optionsButton" src="assets/images/icons/more.png" onclick="showOptionsMenu(this)">
                 </div>
                 <div class="trackDuration">
