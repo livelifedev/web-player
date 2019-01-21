@@ -1,6 +1,6 @@
 console.log("loaded playlists.js");
-//this builds the options menu
-document.querySelector(".optionsMenu").innerHTML = getPlaylistsDropdown();
+
+getPlaylistsDropdown(); //this builds the options menu
 
 document.addEventListener("click", (e) => {
     let target = e.target.classList;
@@ -16,6 +16,8 @@ function createPlaylist() {
         let newPlaylist = {name: popup, songs: []};
         userPlaylists.push(newPlaylist);
     }
+    buildPlaylistsPage()
+    getPlaylistsDropdown()
 }
 
 function deletePlaylist(index) {
@@ -48,7 +50,7 @@ function getPlaylistsDropdown() {
         let name = p.name;
         dropdown += `<option value="${id}">${name}</option>`;
     }
-    return dropdown + '</select>';
+    document.querySelector(".optionsMenu").innerHTML = dropdown + '</select>';
 }
 
 function showOptionsMenu(button) {
@@ -70,4 +72,82 @@ function hideOptionsMenu() {
     if(menu.style.display != "none") {
         menu.style.display = "none";
     }
+}
+
+function buildPlaylistsPage() {
+    let placeholder = document.getElementById("mainContent");
+    let playlistsHeader = 
+       `<div class="playlistsContainer">
+            <div class="gridViewContainer">
+                <h2>Your Playlists</h2>
+                <div class="buttonItems">
+                    <button class="button green" onclick="createPlaylist()">NEW PLAYLIST</button>
+                </div>
+            </div>
+        </div>`;
+    let playlistHTML = "";
+
+    if(userPlaylists.length <= 0) {
+        playlistHTML = "<span class='noResults'>You don't have any playlists yet.</span>";
+    } else {
+        for(let i = 0; i < userPlaylists.length; i++) {
+            let index = userPlaylists[i];
+            playlistHTML += 
+                `<div class="gridViewItem" role="link" tabindex="0" onclick="openPlaylist(userPlaylists[${i}])">
+                    <div class="playlistImage">
+                        <img src="assets/images/icons/playlist.png">
+                    </div>
+
+                    <div class="gridViewInfo">${index.name}</div>
+                </div>`;
+        }
+    }
+
+    placeholder.innerHTML = playlistsHeader + playlistHTML;
+}
+
+function openPlaylist(playlist) {
+    console.log("run");
+    
+    let placeholder = document.getElementById("mainContent");
+    albumInfo = playlist.songs;
+    let playlistHeader = 
+        `<div class="entityInfo">
+            <div class="leftSection">
+                <img src="assets/images/icons/playlist.png">
+            </div>
+            <div class="rightSection">
+                <h2>${playlist.name}</h2>
+                <p role="link" tabindex="0" onclick="openPage('')">Your Playlist</p>
+                <p>${albumInfo.length} Songs</p>
+                <button class="button" onclick="deletePlaylist()">DELETE PLAYLIST</button>
+            </div>
+        </div>`;
+
+    let tracklistHTML = '<div class="tracklistContainer"><ul class="tracklist">';
+
+    for (let song of albumInfo) {
+        let index = albumInfo.indexOf(song);
+        tracklistHTML += 
+            `<li class="tracklistRow">
+                <div class="trackCount">
+                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(albumInfo[${index}], albumInfo, true)">
+                    <span class="trackNumber">${index + 1}</span>
+                </div>
+                <div class="trackInfo">
+                    <span class="trackName">${song.title}</span>
+                    <span class="artistName">${song.artist}</span>
+                </div>
+                <div class="trackOptions">
+                    <input type="hidden" class="songId" value="${index}">
+                    <img class="optionsButton" src="assets/images/icons/more.png" onclick="showOptionsMenu(this)">
+                </div>
+                <div class="trackDuration">
+                    <span class="duration">${song.duration}</span>
+                </div>
+            </li>`;
+    }
+    tracklistHTML += '</ul></div>';
+
+    placeholder.innerHTML = playlistHeader + tracklistHTML;
 }
