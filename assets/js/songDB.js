@@ -12,7 +12,7 @@ let albums = {}; //Maybe use the Map data structure instead, so it can be iterat
 let albumsList = [];
 
 let userPlaylists = [
-    {name: "Playlist 1", songs: []},
+    {name: "Playlist 1", songs: [{title: "Sunny Sky", artist: "radBad", album: "Roadblock", artwork: "album1.jpg", src: "test_audio1.mp3", duration: "0:00"}]},
     {name: "Playlist 2", songs: []},
     {name: "Playlist 3", songs: []}
 ];

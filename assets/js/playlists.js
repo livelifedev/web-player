@@ -1,6 +1,6 @@
 console.log("loaded playlists.js");
 
-getPlaylistsDropdown(); //this builds the options menu
+getPlaylistsDropdown(0); //this builds the options menu
 
 document.addEventListener("click", (e) => {
     let target = e.target.classList;
@@ -21,14 +21,18 @@ function createPlaylist() {
 }
 
 function deletePlaylist(index) {
+    console.log(index);
     let prompt = confirm("Are you sure you want to delete this playlist?");
 
     if(prompt) {
         userPlaylists.splice(index, 1);
     }
+    buildPlaylistsPage()
+    getPlaylistsDropdown()
 }
 
 function addToPlaylist(playlistId, songId) { 
+    console.log(playlistId);
     let selectedPlaylist = userPlaylists[playlistId.value];
     let selectedSong = albumInfo[songId]; //requires access to album.js
     selectedPlaylist.songs.push(selectedSong);
@@ -36,13 +40,18 @@ function addToPlaylist(playlistId, songId) {
     playlistId.value = "";
 }
 
-function removeFromPlaylist() {
-
+function removeFromPlaylist(playlistId, songId) {
+    let index = document.querySelector(".entityInfo").dataset.id;
+    let selectedPlaylist = userPlaylists[index];
+    selectedPlaylist.songs.splice(songId, 1);
+    hideOptionsMenu();
+    openPlaylist(index);
 }
 
-function getPlaylistsDropdown() {
-    let dropdown = `<input type="hidden" class="songId">
-    <select class="item playlist" onchange="addToPlaylist(this, this.previousElementSibling.value)">
+function getPlaylistsDropdown(option) {
+    let optionsMenu = document.querySelector(".optionsMenu");
+    let dropdown = `<input type="hidden" class="songId drop">
+        <select class="item playlist" onchange="addToPlaylist(this, document.querySelector('.songId.drop').value)">
         <option value="">Add to playlist</option>`;
     
     for(let p of userPlaylists) {
@@ -50,7 +59,12 @@ function getPlaylistsDropdown() {
         let name = p.name;
         dropdown += `<option value="${id}">${name}</option>`;
     }
-    document.querySelector(".optionsMenu").innerHTML = dropdown + '</select>';
+    optionsMenu.innerHTML = dropdown + '</select>';
+    
+    if(option) {
+        optionsMenu.innerHTML +=
+            `<div class="item" onclick="removeFromPlaylist(this, document.querySelector('.songId.drop').value)">Remove from playlist</div>`;
+    }
 }
 
 function showOptionsMenu(button) {
@@ -93,7 +107,7 @@ function buildPlaylistsPage() {
         for(let i = 0; i < userPlaylists.length; i++) {
             let index = userPlaylists[i];
             playlistHTML += 
-                `<div class="gridViewItem" role="link" tabindex="0" onclick="openPlaylist(userPlaylists[${i}])">
+                `<div class="gridViewItem" role="link" tabindex="0" onclick="openPlaylist(${i})">
                     <div class="playlistImage">
                         <img src="assets/images/icons/playlist.png">
                     </div>
@@ -106,13 +120,13 @@ function buildPlaylistsPage() {
     placeholder.innerHTML = playlistsHeader + playlistHTML;
 }
 
-function openPlaylist(playlist) {
-    console.log("run");
-    
+function openPlaylist(i) {
+    console.log("playlist index: " + i);
+    let playlist = userPlaylists[i];
     let placeholder = document.getElementById("mainContent");
     albumInfo = playlist.songs;
     let playlistHeader = 
-        `<div class="entityInfo">
+        `<div class="entityInfo" data-id="${i}">
             <div class="leftSection">
                 <img src="assets/images/icons/playlist.png">
             </div>
@@ -120,7 +134,7 @@ function openPlaylist(playlist) {
                 <h2>${playlist.name}</h2>
                 <p role="link" tabindex="0" onclick="openPage('')">Your Playlist</p>
                 <p>${albumInfo.length} Songs</p>
-                <button class="button" onclick="deletePlaylist()">DELETE PLAYLIST</button>
+                <button class="button" onclick="deletePlaylist(${i})">DELETE PLAYLIST</button>
             </div>
         </div>`;
 
@@ -150,4 +164,6 @@ function openPlaylist(playlist) {
     tracklistHTML += '</ul></div>';
 
     placeholder.innerHTML = playlistHeader + tracklistHTML;
+
+    getPlaylistsDropdown(1)
 }
