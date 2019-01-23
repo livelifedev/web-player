@@ -132,7 +132,7 @@ function openPlaylist(i) {
             </div>
             <div class="rightSection">
                 <h2>${playlist.name}</h2>
-                <p role="link" tabindex="0" onclick="openPage('')">Your Playlist</p>
+                <p role="link" tabindex="0" onclick="buildPlaylistsPage()">Your Playlist</p>
                 <p>${albumInfo.length} Songs</p>
                 <button class="button" onclick="deletePlaylist(${i})">DELETE PLAYLIST</button>
             </div>

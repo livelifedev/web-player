@@ -94,6 +94,7 @@ function shuffleArray(a) {
         a[y] = x;
     }
 }
+
 function setRepeat() {
     repeat = !repeat;
     let repeatButton = document.querySelector(".controlButton.repeat img");

@@ -5,10 +5,12 @@ let songDB = [
     {title: "Alpha Mantis", artist: "Eating Clouds", album: "Papayas", artwork: "album6.jpg", src: "test_audio3.mp3", duration: "0:00"},
     {title: "One Leg Theodore", artist: "Eating Clouds", album: "Papayas", artwork: "album6.jpg", src: "test_audio3.mp3", duration: "0:00"},
     {title: "Reckon Fate", artist: "Jumping Jonas", album: "Junkus", artwork: "album9.jpg", src: "test_audio3.mp3", duration: "0:00"}, 
-    {title: "Sandman Haunting", artist: "Purple Vitalia", album: "Opus", artwork: "album12.jpg", src: "test_audio3.mp3", duration: "0:00"} 
+    {title: "Sandman Haunting", artist: "Purple Vitalia", album: "Opus", artwork: "album12.jpg", src: "test_audio3.mp3", duration: "0:00"},
+    {title: "Purple Nurples", artist: "Purple Vitalia", album: "Atari Trip", artwork: "album3.jpg", src: "test_audio1.mp3", duration: "0:00"}  
 ];
-
-let albums = {}; //Maybe use the Map data structure instead, so it can be iterated
+let artists = {}; //{radBad: [{title: "Sunny Sky", …}]
+let artistsList = [];
+let albums = {}; //{Road block:	[{title: "Sunny Sky", …}]
 let albumsList = [];
 
 let userPlaylists = [
@@ -25,16 +27,15 @@ for (let y of songDB) {
     } else {
         albums[y.album].push(y);
     }
-};
-console.log(albums); //{Road block:	[{title: "Sunny Sky", …}]
+}; 
 
-
-function shuffleArray(a) {
-    let y, x, z; //y = random pick, x = tmp storage, i = playlist index
-    for (z = a.length; z; z--) {
-        y = Math.floor(Math.random() * z);
-        x = a[z - 1];
-        a[z - 1] = a[y];
-        a[y] = x;
+for (let z of songDB) {
+    if (artists[z.artist] == null) {
+        artists[z.artist] = [z];
+        artistsList.push(z.artist);
+    } else {
+        artists[z.artist].push(z);
     }
-}
+}; 
+
+

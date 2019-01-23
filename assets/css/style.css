@@ -378,13 +378,22 @@ ALBUM PAGE
     padding: 10px;
 }
 
+.artistInfo {
+    text-align: center;
+}
+
+.borderBottom {
+    border-bottom: 1px solid #939393;
+    margin-bottom: 20px;
+}
+
+.tracklistContainer h2, .gridViewContainer h2 {
+    text-align: center;
+}
+
 /*****************************************
 MISC
 *****************************************/
-
-.gridViewContainer h2 {
-    text-align: center;
-}
 
 .noResults {
     margin: 15px;

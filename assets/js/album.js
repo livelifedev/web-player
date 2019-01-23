@@ -5,7 +5,7 @@ function buildAlbumPage(x) {
 
     let placeholder = document.getElementById("mainContent");
     
-    albumInfo = albums[x];
+    albumInfo = albums[x]; //retrieves songs array from album
     let albumHeader = 
         `<div class="entityInfo">
             <div class="leftSection">
@@ -13,7 +13,7 @@ function buildAlbumPage(x) {
             </div>
             <div class="rightSection">
                 <h2>${x}</h2>
-                <p role="link" tabindex="0" onclick="openPage('')">By ${albumInfo[0].artist}</p>
+                <p role="link" tabindex="0" onclick="buildArtistPage('${albumInfo[0].artist}')">By ${albumInfo[0].artist}</p>
                 <p>${albumInfo.length} Songs</p>
             </div>
         </div>`;
