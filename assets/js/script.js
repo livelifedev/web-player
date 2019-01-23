@@ -62,10 +62,12 @@ function setTrack(trackId, newPlaylist, play) {
 
     let trackName = document.querySelector(".trackName span");
     trackName.textContent = trackId.title;
+    trackName.dataset.albumId = trackId.album;
     let artistName = document.querySelector(".trackInfo .artistName span");
     artistName.textContent = trackId.artist;
     let albumArt = document.querySelector(".content .albumLink img");
     albumArt.src = "assets/images/artwork/" + trackId.artwork;
+    albumArt.dataset.albumId = trackId.album;
     audioElement.setTrack(trackId);
     if(play) {
         playSong();

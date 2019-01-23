@@ -1,10 +1,8 @@
 //requires access to songDB.js
 console.log("loaded artist.js");
-let artistInfo = [];
 function buildArtistPage(y) {
     let placeholder = document.getElementById("mainContent");
-    artistInfo = artists[y];
-    console.log(artistInfo);
+    tempPlaylist = artists[y];
     let artistHeader = 
         `<div class="entityInfo borderBottom">
             <div class="centerSection">
@@ -22,12 +20,12 @@ function buildArtistPage(y) {
             <h2>Songs</h2>
             <ul class="tracklist">`;
         
-    for (let song of artistInfo) {
-        let index = artistInfo.indexOf(song);
+    for (let song of tempPlaylist) {
+        let index = tempPlaylist.indexOf(song);
         tracklistHTML += 
             `<li class="tracklistRow">
                 <div class="trackCount">
-                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(artistInfo[${index}], albumInfo, true)">
+                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(tempPlaylist[${index}], tempPlaylist, true)">
                     <span class="trackNumber">${index + 1}</span>
                 </div>
                 <div class="trackInfo">

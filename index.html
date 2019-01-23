@@ -56,15 +56,15 @@
                 <div id="nowPlayingLeft">
                     <div class="content">
                         <span class="albumLink">
-                            <img role="link" tabindex="0" src="assets/images/artwork/default.jpg" class="albumArtwork">
+                            <img role="link" tabindex="0" src="assets/images/artwork/default.jpg" class="albumArtwork" data-albumId="" onclick="buildAlbumPage(this.dataset.albumId)">
                         </span>
 
                         <div class="trackInfo">
                             <span class="trackName">
-                                <span role="link" tabindex="0">track Placeholder</span>
+                                <span role="link" tabindex="0" data-albumId="" onclick="buildAlbumPage(this.dataset.albumId)"></span>
                             </span>
                             <span class="artistName">
-                                <span role="link" tabindex="0">artist Placeholder</span>
+                                <span role="link" tabindex="0" onclick="buildArtistPage(this.textContent)"></span>
                             </span>
                         </div>
                     </div>

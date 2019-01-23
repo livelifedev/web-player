@@ -1,31 +1,30 @@
 //requires access to songDB.js
 console.log("loaded album.js");
-let albumInfo = [];
 function buildAlbumPage(x) {
 
     let placeholder = document.getElementById("mainContent");
     
-    albumInfo = albums[x]; //retrieves songs array from album
+    tempPlaylist = albums[x]; //retrieves songs array from album
     let albumHeader = 
         `<div class="entityInfo">
             <div class="leftSection">
-                <img src="assets/images/artwork/${albumInfo[0].artwork}">
+                <img src="assets/images/artwork/${tempPlaylist[0].artwork}">
             </div>
             <div class="rightSection">
                 <h2>${x}</h2>
-                <p role="link" tabindex="0" onclick="buildArtistPage('${albumInfo[0].artist}')">By ${albumInfo[0].artist}</p>
-                <p>${albumInfo.length} Songs</p>
+                <p role="link" tabindex="0" onclick="buildArtistPage('${tempPlaylist[0].artist}')">By ${tempPlaylist[0].artist}</p>
+                <p>${tempPlaylist.length} Songs</p>
             </div>
         </div>`;
 
     let tracklistHTML = '<div class="tracklistContainer"><ul class="tracklist">';
 
-    for (let song of albumInfo) {
-        let index = albumInfo.indexOf(song);
+    for (let song of tempPlaylist) {
+        let index = tempPlaylist.indexOf(song);
         tracklistHTML += 
             `<li class="tracklistRow">
                 <div class="trackCount">
-                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(albumInfo[${index}], albumInfo, true)">
+                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(tempPlaylist[${index}], tempPlaylist, true)">
                     <span class="trackNumber">${index + 1}</span>
                 </div>
                 <div class="trackInfo">

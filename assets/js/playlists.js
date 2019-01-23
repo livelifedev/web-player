@@ -34,7 +34,7 @@ function deletePlaylist(index) {
 function addToPlaylist(playlistId, songId) { 
     console.log(playlistId);
     let selectedPlaylist = userPlaylists[playlistId.value];
-    let selectedSong = albumInfo[songId]; //requires access to album.js
+    let selectedSong = tempPlaylist[songId];
     selectedPlaylist.songs.push(selectedSong);
     hideOptionsMenu();
     playlistId.value = "";
@@ -84,7 +84,7 @@ function openPlaylist(i) {
     console.log("playlist index: " + i);
     let playlist = userPlaylists[i];
     let placeholder = document.getElementById("mainContent");
-    albumInfo = playlist.songs;
+    tempPlaylist = playlist.songs;
     let playlistHeader = 
         `<div class="entityInfo" data-id="${i}">
             <div class="leftSection">
@@ -93,19 +93,19 @@ function openPlaylist(i) {
             <div class="rightSection">
                 <h2>${playlist.name}</h2>
                 <p role="link" tabindex="0" onclick="buildPlaylistsPage()">Your Playlist</p>
-                <p>${albumInfo.length} Songs</p>
+                <p>${tempPlaylist.length} Songs</p>
                 <button class="button" onclick="deletePlaylist(${i})">DELETE PLAYLIST</button>
             </div>
         </div>`;
 
     let tracklistHTML = '<div class="tracklistContainer"><ul class="tracklist">';
 
-    for (let song of albumInfo) {
-        let index = albumInfo.indexOf(song);
+    for (let song of tempPlaylist) {
+        let index = tempPlaylist.indexOf(song);
         tracklistHTML += 
             `<li class="tracklistRow">
                 <div class="trackCount">
-                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(albumInfo[${index}], albumInfo, true)">
+                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(tempPlaylist[${index}], tempPlaylist, true)">
                     <span class="trackNumber">${index + 1}</span>
                 </div>
                 <div class="trackInfo">
