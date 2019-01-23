@@ -44,7 +44,7 @@ function buildAlbumPage(x) {
     tracklistHTML += '</ul></div>';
     
     placeholder.innerHTML = albumHeader + tracklistHTML;
-
+    getPlaylistsDropdown(0)
 }
 
 

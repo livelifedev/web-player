@@ -27,7 +27,7 @@ function buildArtistPage(y) {
         tracklistHTML += 
             `<li class="tracklistRow">
                 <div class="trackCount">
-                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(albumInfo[${index}], albumInfo, true)">
+                    <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(artistInfo[${index}], albumInfo, true)">
                     <span class="trackNumber">${index + 1}</span>
                 </div>
                 <div class="trackInfo">
@@ -52,7 +52,7 @@ function buildArtistPage(y) {
         for(let i = 0; i < albumsList.length; i++) {
             let title = albumsList[i]; //"Road block"
             let firstSong = albums[title][0];
-            
+
             if (firstSong.artist == y) {
                 gridItem += 
                 `<div class="gridViewItem">
@@ -67,7 +67,7 @@ function buildArtistPage(y) {
         `</div>`
 
     placeholder.innerHTML = artistHeader + tracklistHTML + gridItem;
-
+    getPlaylistsDropdown(0);
 }
 
 

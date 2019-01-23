@@ -17,7 +17,7 @@ function createPlaylist() {
         userPlaylists.push(newPlaylist);
     }
     buildPlaylistsPage()
-    getPlaylistsDropdown()
+    getPlaylistsDropdown(1)
 }
 
 function deletePlaylist(index) {
@@ -28,7 +28,7 @@ function deletePlaylist(index) {
         userPlaylists.splice(index, 1);
     }
     buildPlaylistsPage()
-    getPlaylistsDropdown()
+    getPlaylistsDropdown(1)
 }
 
 function addToPlaylist(playlistId, songId) { 
@@ -46,46 +46,6 @@ function removeFromPlaylist(playlistId, songId) {
     selectedPlaylist.songs.splice(songId, 1);
     hideOptionsMenu();
     openPlaylist(index);
-}
-
-function getPlaylistsDropdown(option) {
-    let optionsMenu = document.querySelector(".optionsMenu");
-    let dropdown = `<input type="hidden" class="songId drop">
-        <select class="item playlist" onchange="addToPlaylist(this, document.querySelector('.songId.drop').value)">
-        <option value="">Add to playlist</option>`;
-    
-    for(let p of userPlaylists) {
-        let id = userPlaylists.indexOf(p);//
-        let name = p.name;
-        dropdown += `<option value="${id}">${name}</option>`;
-    }
-    optionsMenu.innerHTML = dropdown + '</select>';
-    
-    if(option) {
-        optionsMenu.innerHTML +=
-            `<div class="item" onclick="removeFromPlaylist(this, document.querySelector('.songId.drop').value)">Remove from playlist</div>`;
-    }
-}
-
-function showOptionsMenu(button) {
-    let songId = button.previousElementSibling.value;
-    let menu = document.querySelector(".optionsMenu");
-    let menuWidth = parseInt(getComputedStyle(menu).width); //optimize later
-    menu.querySelector(".songId").value = songId;
-
-    const scrollTop = window.scrollY;
-    const elementOffset = button.offsetTop;
-    const top = elementOffset - scrollTop;
-    const left = button.offsetLeft;
-
-    menu.style.cssText = `top: ${top}px; left: ${left - menuWidth}px; display: inline`;
-}
-
-function hideOptionsMenu() {
-    let menu = document.querySelector(".optionsMenu");
-    if(menu.style.display != "none") {
-        menu.style.display = "none";
-    }
 }
 
 function buildPlaylistsPage() {
