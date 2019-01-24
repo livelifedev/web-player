@@ -12,6 +12,7 @@ let artists = {}; //{radBad: [{title: "Sunny Sky", …}]
 let artistsList = [];
 let albums = {}; //{Road block:	[{title: "Sunny Sky", …}]
 let albumsList = [];
+let songsList = [];
 
 let userPlaylists = [
     {name: "Playlist 1", songs: [{title: "Sunny Sky", artist: "radBad", album: "Roadblock", artwork: "album1.jpg", src: "test_audio1.mp3", duration: "0:00"}]},
@@ -38,4 +39,7 @@ for (let z of songDB) {
     }
 }; 
 
+for (let x of songDB) {
+        songsList.push(x.title);
+}; 
 
