@@ -7,6 +7,7 @@ let audioElement;
 let repeat = false;
 let shuffle = false;
 let mouseDown = false;
+let timer;
 
 window.addEventListener("scroll", () => hideOptionsMenu());
 
