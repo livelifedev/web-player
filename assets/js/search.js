@@ -8,6 +8,7 @@ function openSearch() {
         <div id="resultsContainer"></div>`;
     
     placeholder.innerHTML = searchHeader;
+    getPlaylistsDropdown(0)
 
     document.querySelector(".searchInput").addEventListener("keyup", (k) => {
         clearTimeout(timer);
@@ -20,16 +21,18 @@ function openSearch() {
 }
 
 function search() {
-    let resultsContainer = document.getElementById("resultsContainer");
-    let searchText = new RegExp(document.querySelector(".searchInput").value, "i");
+    let getSearch = document.querySelector(".searchInput").value;
     
+    if(getSearch.length < 2) return;
+    let resultsContainer = document.getElementById("resultsContainer");
+    let searchText = new RegExp("\\b" + getSearch, "i");
+
     let foundSongs = songsList.filter(s => s.match(searchText));
     let foundArtists = artistsList.filter(s => s.match(searchText));
     let foundAlbums = albumsList.filter(s => s.match(searchText));
-    console.log(foundAlbums);
     
-    
-    for(let title of foundSongs){
+    tempPlaylist = [];
+    for(let title of foundSongs){ //there is a bug where tempPlaylist does not get cleared before results
         for(let song of songDB) {
             if(song.title == title) tempPlaylist.push(song);
         }
@@ -64,6 +67,22 @@ function search() {
 
     songResult += '</ul></div>';
 
+    let artistResult =
+        `<div class="artistsContainer borderBottom">
+            <h2>Artists</h2>`;
+
+    for (let artist of foundArtists) {
+        artistResult += 
+        `<div class="searchResultRow">
+            <div class="artistName">
+                <span role="link" tabindex="0" onclick="buildArtistPage(this.textContent)">${artist}</span>
+            </div>    
+        </div>`;
+    }
+
+    artistResult += '</div>';
+
+
     let albumResult = 
     `<div class="gridViewContainer">
         <h2>Albums</h2>`;
@@ -78,33 +97,7 @@ function search() {
             </span>
         </div>`;
     }
+    albumResult += '</div>';
 
-
-    resultsContainer.innerHTML += songResult + albumResult;
-    
+    resultsContainer.innerHTML = songResult + artistResult + albumResult;
 }
-
-
-/* 
-//Albums results
-
-
-    for(let i = 0; i < albumsList.length; i++) {
-        let title = albumsList[i]; //"Road block"
-        let firstSong = albums[title][0];
-
-        if (firstSong.artist == y) {
-            gridItem += 
-            `<div class="gridViewItem">
-                <span role="link" tabindex="0" onclick="buildAlbumPage('${title}')">
-                    <img src="assets/images/artwork/${firstSong.artwork}">
-                    <div class="gridViewInfo">${title}</div>
-                </span>
-            </div>`;
-        }
-    }
-    
-    `</div>`
-
-placeholder.innerHTML = artistHeader + tracklistHTML + gridItem;
-*/
