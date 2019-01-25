@@ -26,26 +26,23 @@ function search() {
     let foundSongs = songsList.filter(s => s.match(searchText));
     let foundArtists = artistsList.filter(s => s.match(searchText));
     let foundAlbums = albumsList.filter(s => s.match(searchText));
-    console.log(foundSongs);
+    console.log(foundAlbums);
     
-    if (foundSongs.length <= 0) {
-        return resultsContainer.innerHTML = "<p>Not found</p>";
-    }
-
+    
     for(let title of foundSongs){
         for(let song of songDB) {
             if(song.title == title) tempPlaylist.push(song);
         }
     }
 
-    resultsHTML = 
+    let songResult = 
         `<div class="tracklistContainer borderBottom">
             <h2>Songs</h2>
             <ul class="tracklist">`;
 
     for (let song of tempPlaylist) {
         let index = tempPlaylist.indexOf(song);
-        resultsHTML += 
+        songResult += 
             `<li class="tracklistRow">
                 <div class="trackCount">
                     <img class="play" src="assets/images/icons/play-white.png" onclick="setTrack(tempPlaylist[${index}], tempPlaylist, true)">
@@ -65,17 +62,32 @@ function search() {
             </li>`;
     }
 
-    resultsHTML += '</ul></div>';
-    resultsContainer.innerHTML = resultsHTML;
+    songResult += '</ul></div>';
+
+    let albumResult = 
+    `<div class="gridViewContainer">
+        <h2>Albums</h2>`;
+
+    for(let i = 0; i < foundAlbums.length; i++) {
+        let title = foundAlbums[i]; 
+        albumResult += 
+        `<div class="gridViewItem">
+            <span role="link" tabindex="0" onclick="buildAlbumPage('${title}')">
+                <img src="assets/images/artwork/${albums[title][0].artwork}">
+                <div class="gridViewInfo">${title}</div>
+            </span>
+        </div>`;
+    }
+
+
+    resultsContainer.innerHTML += songResult + albumResult;
     
 }
 
 
 /* 
 //Albums results
-let gridItem = 
-    `<div class="gridViewContainer">
-        <h2>Albums</h2>`
+
 
     for(let i = 0; i < albumsList.length; i++) {
         let title = albumsList[i]; //"Road block"
