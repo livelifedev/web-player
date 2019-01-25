@@ -1,5 +1,3 @@
-//requires access to songDB.js
-console.log("loaded album.js");
 function buildAlbumPage(x) {
 
     let placeholder = document.getElementById("mainContent");

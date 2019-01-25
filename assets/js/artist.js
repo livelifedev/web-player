@@ -1,5 +1,3 @@
-//requires access to songDB.js
-console.log("loaded artist.js");
 function buildArtistPage(y) {
     let placeholder = document.getElementById("mainContent");
     tempPlaylist = artists[y];

@@ -1,4 +1,3 @@
-console.log("loaded browse.js");
 shuffleArray(albumsList);
 function toGrid(albumsList) {
     let placeholder = document.getElementById("mainContent");

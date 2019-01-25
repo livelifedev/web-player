@@ -1,5 +1,3 @@
-console.log("loaded playlists.js");
-
 getPlaylistsDropdown(0); //this builds the options menu
 
 document.addEventListener("click", (e) => {

@@ -1,4 +1,3 @@
-console.log("loaded script.js");
 let currentPlaylist = [];
 let shufflePlaylist = [];
 let tempPlaylist = [];
