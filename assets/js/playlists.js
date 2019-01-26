@@ -13,27 +13,28 @@ function createPlaylist() {
     if (popup != null) {
         let newPlaylist = {name: popup, songs: []};
         userPlaylists.push(newPlaylist);
+        setPlaylist()
+        buildPlaylistsPage()
+        getPlaylistsDropdown(1)
     }
-    buildPlaylistsPage()
-    getPlaylistsDropdown(1)
 }
 
 function deletePlaylist(index) {
-    console.log(index);
     let prompt = confirm("Are you sure you want to delete this playlist?");
 
     if(prompt) {
         userPlaylists.splice(index, 1);
+        setPlaylist()
+        buildPlaylistsPage();
+        getPlaylistsDropdown(1)
     }
-    buildPlaylistsPage()
-    getPlaylistsDropdown(1)
 }
 
 function addToPlaylist(playlistId, songId) { 
-    console.log(playlistId);
     let selectedPlaylist = userPlaylists[playlistId.value];
     let selectedSong = tempPlaylist[songId];
     selectedPlaylist.songs.push(selectedSong);
+    setPlaylist()
     hideOptionsMenu();
     playlistId.value = "";
 }
@@ -42,6 +43,7 @@ function removeFromPlaylist(playlistId, songId) {
     let index = document.querySelector(".entityInfo").dataset.id;
     let selectedPlaylist = userPlaylists[index];
     selectedPlaylist.songs.splice(songId, 1);
+    setPlaylist()
     hideOptionsMenu();
     openPlaylist(index);
 }
@@ -79,7 +81,6 @@ function buildPlaylistsPage() {
 }
 
 function openPlaylist(i) {
-    console.log("playlist index: " + i);
     let playlist = userPlaylists[i];
     let placeholder = document.getElementById("mainContent");
     tempPlaylist = playlist.songs;

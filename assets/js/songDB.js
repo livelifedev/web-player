@@ -13,12 +13,12 @@ let albums = {}; //{Road block:	[{title: "Sunny Sky", …}]
 let albumsList = [];
 let songsList = [];
 
-let userPlaylists = [
-    {name: "Playlist 1", songs: [{title: "Sunny Sky", artist: "radBad", album: "Roadblock", artwork: "album1.jpg", src: "test_audio1.mp3", duration: "0:00"}]},
-    {name: "Playlist 2", songs: []},
-    {name: "Playlist 3", songs: []}
-];
+let userPlaylists = [];
+if(localStorage.getItem("playlist")) {
+    userPlaylists = JSON.parse(localStorage.getItem("playlist"));
+};
 
+//Build album data list
 for (let y of songDB) {
     if (albums[y.album] == null) {
         albums[y.album] = [y];
@@ -28,6 +28,7 @@ for (let y of songDB) {
     }
 }; 
 
+//Build artist data list
 for (let z of songDB) {
     if (artists[z.artist] == null) {
         artists[z.artist] = [z];
@@ -37,7 +38,11 @@ for (let z of songDB) {
     }
 }; 
 
+//Build song title list
 for (let x of songDB) {
         songsList.push(x.title);
 }; 
 
+function setPlaylist() {
+    localStorage.setItem("playlist", JSON.stringify(userPlaylists));
+}

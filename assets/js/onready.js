@@ -1,5 +1,4 @@
-console.log("loaded onready.js");
-let newPlaylist = songDB; //should generate random playlist 10 songs
+let newPlaylist = songDB;
 audioElement = new Audio();
 setTrack(newPlaylist[0], newPlaylist, false);
 updateVolumeProgressBar(audioElement.audio);
