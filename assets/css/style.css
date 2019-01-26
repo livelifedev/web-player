@@ -259,6 +259,15 @@ MAIN CONTENT
     text-decoration: none;
 }
 
+.userInfo {
+    text-align: center;
+}
+
+.profilePhoto {
+    width: 200px;
+    border-radius: 100%;
+}
+
 /*****************************************
 SEARCH PAGE
 *****************************************/
