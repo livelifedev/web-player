@@ -5,7 +5,7 @@ body {
     min-width: 720px;
 }
 
-#topContainer { /**/
+#topContainer {
     min-height: 100%;
     width: 100%;
 }
@@ -46,13 +46,13 @@ PLAYBAR
     align-items: center;
 }
 
-#nowPlayingBar .content { /**/
+#nowPlayingBar .content { 
     width: 100%;
     height: 57px;
 }
 
 .playerControls .buttons {
-    margin: 0 auto; /**/
+    margin: 0 auto;
     display: table;
 }
 
@@ -96,14 +96,14 @@ PROGRESS BAR
 }
 
 .progressBarBg {
-    background-color: #294930;
+    background-color: #293949;
     height: 4px;
     width: 100%;
     border-radius: 2px;
 }
 
 .progress { /* Update bar using JS */
-    background-color: #00813a;
+    background-color: #007b81;
     height: 4px;
     width: 0;
     border-radius: 2px;
@@ -122,7 +122,7 @@ TRACK INFO BAR
     max-width: 57px;
     margin-right: 15px;
     float: left;
-    background-size: cover; /**/
+    background-size: cover;
 }
 
 #nowPlayingLeft .trackInfo {
@@ -152,6 +152,13 @@ VOLUME BAR
 
 .volumeBar .progressBar {
     width: 125px;
+}
+
+.controlButton.volume img {
+    vertical-align: bottom;
+    width: 18px;
+    height: 18px;
+    padding-top: 3px;
 }
 
 /*****************************************
@@ -192,15 +199,13 @@ NAV BAR
 .navItem {
     padding: 10px 0;
     font-size: 14px;
-    font-weight: 700px;
+    font-weight: 700;
     display: block;
-    letter-spacing: 1px; /**/
     position: relative;
 }
 
 .navItemLink {
     color: #a0a0a0;
-    text-decoration: none; /**/
 }
 
 .navItemLink:hover {
@@ -273,7 +278,7 @@ SEARCH PAGE
 *****************************************/
 
 .searchContainer {
-    background-color: #242424;
+    background-color: #54262f;
     padding: 20px 28px;
 }
 
@@ -297,7 +302,7 @@ SEARCH PAGE
 }
 
 .searchResultRow:hover {
-    background-color: #282828;
+    background-color: #293949;
 }
 
 .searchResultRow .artistName span {
@@ -360,7 +365,7 @@ ALBUM PAGE
 }
 
 .tracklistRow:hover {
-    background-color: #282828;
+    background-color: #293949;
 }
 
 .tracklistRow .trackCount {
@@ -423,7 +428,7 @@ ALBUM PAGE
 }
 
 .playlistImage {
-    border: 3px solid #282828;
+    border: 3px solid #002d2f;
     padding: 10px;
 }
 
@@ -451,7 +456,7 @@ input:focus {
 
 .optionsMenu {
     position: fixed;
-    background-color: #282828;
+    background-color: #293949;
     width: 200px;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 3px;
@@ -467,14 +472,15 @@ input:focus {
     color: rgba(147, 147, 147, 0.8);
     cursor: pointer;
     height: 40px;
-    background-color: #282828;
+    background-color: #293949;
     font-size: 14px;
 }
 
 .optionsMenu .item:hover {
     color: #fff;
-    background-color: #333;
-    border-color: #333;
+    background-color: #007b81;
+    border-color: #007b81;
+    border-radius: 1px;
 }
 
 .optionsMenu select {
@@ -485,10 +491,16 @@ input:focus {
 
 [role="link"] {
     cursor: pointer;
+    outline-style: none;
 }
 
 button {
     cursor: pointer;
+    outline-style: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .button{
@@ -505,8 +517,8 @@ button {
 }
 
 .button.green {
-    background-color: #00813a;
-    border-color: #00813a;
+    background-color: #007b81;
+    border-color: #007b81;
 }
 
 .buttonItems .button {
