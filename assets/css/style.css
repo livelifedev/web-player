@@ -10,6 +10,15 @@ body {
     width: 100%;
 }
 
+.wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px;
+    border: thin dashed;
+    border-radius: 3px;
+    font-size: 1.1em;
+}
+
 /*****************************************
 PLAYBAR
 *****************************************/
