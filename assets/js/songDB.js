@@ -5,7 +5,28 @@ let songDB = [
     {title: "One Leg Theodore", artist: "Eating Clouds", album: "Papayas", artwork: "album6.jpg", src: "test_audio3.mp3", duration: "0:45"},
     {title: "Reckon Fate", artist: "Jumping Jonas", album: "Junkus", artwork: "album9.jpg", src: "test_audio3.mp3", duration: "0:45"}, 
     {title: "Sandman Haunting", artist: "Purple Vitalia", album: "Opus", artwork: "album12.jpg", src: "test_audio2.mp3", duration: "0:26"},
-    {title: "Purple Nurples", artist: "Purple Vitalia", album: "Atari Trip", artwork: "album3.jpg", src: "test_audio1.mp3", duration: "0:32"}  
+    {title: "Purple Nurples", artist: "Purple Vitalia", album: "Atari Trip", artwork: "album3.jpg", src: "test_audio1.mp3", duration: "0:32"},
+    {title: "Aardvark Gabba", artist: "radBad", album: "Roadblock", artwork: "album1.jpg", src: "test_audio2.mp3", duration: "0:26"}, 
+    {title: "Stormpiper Trooper", artist: "Sykideric", album: "Dereck", artwork: "album2.jpg", src: "test_audio3.mp3", duration: "0:45"},
+    {title: "Theta Whale", artist: "Eating Clouds", album: "Papayas", artwork: "album6.jpg", src: "test_audio1.mp3", duration: "0:32"},
+    {title: "Pirate Flamingo", artist: "Eating Clouds", album: "Papayas", artwork: "album6.jpg", src: "test_audio2.mp3", duration: "0:26"},
+    {title: "Pommus Pommul", artist: "Jumping Jonas", album: "Junkus", artwork: "album9.jpg", src: "test_audio1.mp3", duration: "0:32"}, 
+    {title: "Booger Man Booger", artist: "Purple Vitalia", album: "Opus", artwork: "album12.jpg", src: "test_audio3.mp3", duration: "0:45"},
+    {title: "Smurf Grape", artist: "Purple Vitalia", album: "Atari Trip", artwork: "album3.jpg", src: "test_audio2.mp3", duration: "0:26"},
+    {title: "Jaaris Atari", artist: "radBad", album: "Roadblock", artwork: "album1.jpg", src: "test_audio3.mp3", duration: "0:45"}, 
+    {title: "Slow Roast", artist: "Sunday Barb", album: "Pork-u-Pine", artwork: "album4.jpg", src: "test_audio2.mp3", duration: "0:26"},
+    {title: "VB Marinate", artist: "Sunday Barb", album: "Pork-u-Pine", artwork: "album4.jpg", src: "test_audio3.mp3", duration: "0:45"},
+    {title: "Pineapple Stuffing", artist: "Sunday Barb", album: "Pork-u-Pine", artwork: "album4.jpg", src: "test_audio3.mp3", duration: "0:45"},
+    {title: "Citadel", artist: "Hunting Toppilus", album: "Maverick", artwork: "album5.jpg", src: "test_audio3.mp3", duration: "0:45"}, 
+    {title: "Crud Bucket", artist: "Garage Grommet", album: "Zoot", artwork: "album7.jpg", src: "test_audio2.mp3", duration: "0:26"},
+    {title: "Scratch My Car", artist: "Purple Vitalia", album: "Itch", artwork: "album8.jpg", src: "test_audio1.mp3", duration: "0:32"},
+    {title: "Zachary", artist: "radBad", album: "Finalia", artwork: "album10.jpg", src: "test_audio2.mp3", duration: "0:26"}, 
+    {title: "Pumping Gutters", artist: "radBad", album: "Finalia", artwork: "album10.jpg", src: "test_audio3.mp3", duration: "0:45"},
+    {title: "King of Atlantis", artist: "Aqua Dude", album: "Sea Men", artwork: "album11.jpg", src: "test_audio1.mp3", duration: "0:32"},
+    {title: "Fish N Chips", artist: "Aqua Dude", album: "Sea Men", artwork: "album11.jpg", src: "test_audio2.mp3", duration: "0:26"},
+    {title: "Step On Lego", artist: "Jumping Jonas", album: "Junkus", artwork: "album9.jpg", src: "test_audio3.mp3", duration: "0:45"}, 
+    {title: "Lemon Juice", artist: "Purple Vitalia", album: "Opus", artwork: "album12.jpg", src: "test_audio1.mp3", duration: "0:32"},
+    {title: "Kangaro Ooster", artist: "Garage Grommet", album: "Zoot", artwork: "album7.jpg", src: "test_audio2.mp3", duration: "0:26"}    
 ];
 let artists = {}; //{radBad: [{title: "Sunny Sky", …}]
 let artistsList = [];
