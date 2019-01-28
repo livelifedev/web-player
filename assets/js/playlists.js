@@ -59,7 +59,7 @@ function buildPlaylistsPage() {
                 </div>
             </div>
         </div>`;
-    let playlistHTML = "";
+    let playlistHTML = '<div class="wrapper">';
 
     if(userPlaylists.length <= 0) {
         playlistHTML = "<span class='noResults'>You don't have any playlists yet.</span>";
@@ -77,7 +77,7 @@ function buildPlaylistsPage() {
         }
     }
 
-    placeholder.innerHTML = playlistsHeader + playlistHTML;
+    placeholder.innerHTML = playlistsHeader + playlistHTML + '</div>';
 }
 
 function openPlaylist(i) {

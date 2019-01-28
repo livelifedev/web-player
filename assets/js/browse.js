@@ -1,7 +1,9 @@
 shuffleArray(albumsList);
 function toGrid(albumsList) {
     let placeholder = document.getElementById("mainContent");
-    let gridItem = '<h1 class="pageHeading">Hot Picks For You!</h1>';
+    let gridItem = 
+        `<h1 class="pageHeading">Hot Picks For You!</h1>
+            <div class="wrapper">`;
     for(let i = 0; i < albumsList.length; i++) {
         let title = albumsList[i]; //"Road block"
         gridItem += 
@@ -12,5 +14,5 @@ function toGrid(albumsList) {
             </span>
         </div>`;
     }
-    placeholder.innerHTML = gridItem;
+    placeholder.innerHTML = gridItem + '</div>';
 }
